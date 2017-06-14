@@ -1,28 +1,14 @@
-
 # coding: utf-8
-
-# In[1]:
-
-get_ipython().magic(u'matplotlib inline')
-
-
-# In[2]:
 
 import scipy
 import numpy as np #outils mathématiques de base
 import matplotlib.pyplot as plt #dessins
 import pandas as pd
+from scipy.integrate import odeint
 
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
-
-# In[3]:
-
-from scipy.integrate import odeint
-
-
-# In[4]:
 
 periode = 100
 nombre_points = 100000
@@ -43,8 +29,6 @@ k_min = 0.05
 k_max = 1
 def k(p):
 	return min(k_max, max(k_min, -0.0065 + np.exp(-5+20*p)))
-
-# In[5]:
 
 #Paramètres par défaut
 """
@@ -103,8 +87,6 @@ pE0 = (nu1-nu2)+0.03
 Y0=1
 Em0 = 0 #émissions cumulées
 
-# In[6]:
-
 #Fonctions usuelles
 def pE(t):
 	return pE0 #if t < 70 else pE1 #pE0*np.exp(dPE*t)
@@ -159,8 +141,6 @@ def wpoint(y,t):
 	wp1 = w*(f(l)-(nu_th(y,t) - nu1*nu2/mu_eps(eps))*inv(y,t)-alpha)
 	#return w*((1-w)*f(l)-(nu_th(y,t) - nu1*nu2/mu_eps(eps))*inv(y,t)-alpha)
 	return wp1 if w < 1 or wp1 < 0 else 0
-
-# In[7]:
 
 def differentielle (y, t):
 	[w,l,d,eps,th,Y] = y[0:6]
